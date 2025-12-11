@@ -13,4 +13,102 @@
 body{
   width: 100%;
   min-height: 100vh;
+ background-image: linear-gradient(to right,#FC00FF, #00DBDE);
+}
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+    background-color: #66CB92;
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: #66CB92;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.container
+{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: auto;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.fa-circle-check
+{
+  color: #66CB92;
+}
+.fa-circle-xmark
+{
+  color: #FF9396;
+}
+
+.cardContainer
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50px;
+  width: 500px;
+  height: 200px;
+  border: 1px solid #f1f1f1;
+  background-color: white;
+  border-radius: 5px;
+}
+textarea
+{
+  height: 100px;
+}
+
+.addNew
+{
+  background-color:  #66CB92;
 }
