@@ -1,34 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from 'react'
+import Cards from './components/Cards'
+import { GetData } from './service/jsonprovider'
+import AddCard from './components/AddCard'
 
-function App() {
-  const [count, setCount] = useState(0)
+export type CardTpye = {
+  question: string
+  answer: string
+}
+
+const App = () => {
+  const [data, setData] = useState<CardTpye[]>([])
+  const[which, setWhich] = useState<"Cards" | "Create">("Cards")
+
+
+  useEffect(() => {
+    GetData().then(res => setData(res))
+  }, []) 
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="container">
+      {which == "Cards" && data.length > 0 && <Cards items={data} setWhich={setWhich} />}
+      {which == "Create" && <AddCard setWhich={setWhich} setData={setData}/>}
+    </div>
   )
 }
 
